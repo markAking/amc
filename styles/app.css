@@ -1,0 +1,73 @@
+body{
+	background: #000;
+	color: #FFF;
+}
+h1{
+	font-size: 24px;
+}
+h2{
+	font-size: 18px;
+}
+.container{
+	background: #0D1B1C;
+	border-radius: 5px;
+	margin: 15px auto;
+	padding-bottom: 15px;
+}
+.panel-heading{
+	border-bottom: 1px #081111 solid;
+	margin-bottom: 15px;
+}
+.yoursongs{
+	padding: 15px 0 0;
+}
+.songlist{
+	list-style: none;
+	margin-bottom: 10px;
+}
+label{
+	line-height: 34px;
+	margin: 0;
+}
+table{
+	width: 100%;
+	margin-top: 15px;
+}
+th{
+	background: rgba(0,0,0,.4);
+	color: #FFF;
+	padding: 10px;
+}
+td{
+	color: #666;
+	padding: 10px;
+}
+tr:nth-child(odd) td{
+	background: rgba(0,0,0,.4);
+}
+button.list-group-item{
+	border: none;
+	padding: 10px 0;
+}
+button.list-group-item:hover,
+button.list-group-item:focus{
+	background: rgba(115, 186, 191, 0.4);
+	border: none;
+	color: #000;
+}
+.modal-content{
+	background: #1a3638;
+}
+.modal-content .row{
+	margin: 15px 0;
+}
+.modal-header {
+    border-bottom: 1px solid #081111;
+}
+.modal-footer {
+    border-top: 1px solid #081111;
+}
+.modal-body{
+	background: #FFF;
+	color: #000;
+}

@@ -1,0 +1,110 @@
+<div class="container">
+  <div class="row">
+    <div class="panel-heading">
+      <div class="panel-title text-center">
+        <h1 class="title">Top 10 Playlist</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-7">
+      <h2 class="col-sm-12">Search for your songs</h2>
+      <div class="btn-group col-xs-3">
+        <select id="searchType" class="form-control" ng-model="searchType">
+          <option value="track">Track</option>
+          <option value="album">Album</option>
+          <option value="artist">Artist</option>
+        </select>
+      </div>
+      <div class=" col-xs-7">
+        <input ng-model="searchTerm" class="form-control" type="text"  placeholder="Leonard Cohen" />
+      </div>
+      <div class="col-xs-2">
+        <button ng-click="submit()" type="submit" class="btn btn-primary btn-block">Find</button>
+      </div>
+      <div class="col-xs-12">
+        <table ng-if="songsData">
+          <tr>
+            <th>Artist</th>
+            <th>Song</th>
+            <th></th>
+          </tr>
+          <tr ng-repeat="item in songsData">
+            <td>{{item.allArtists}}</td>
+            <td>{{item.name}}</td>
+            <td><button ng-click="add(item)" type="submit" class="btn btn-primary btn-block btn-sm">add</button></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div id="playlist" class="col-sm-5">
+      <h2 class="col-sm-12">Your Playlist</h2>
+      <label class="listTitle col-xs-2">
+        Title:
+      </label>
+      <div class="col-xs-10">
+        <input ng-model="listTitle" class="form-control" type="text"  placeholder="Add your playlist title" />
+      </div>
+      <div class="col-xs-12" ng-if="playlist">
+        <table>
+          <tr>
+            <th>Cover Image</th>
+            <th>Song</th>
+            <th>Note</th>
+          </tr>
+          <tr ng-repeat="item in playlist track by $index">
+            <td><img src={{item.imageUrl}}></td>
+            <td>{{item.name}}</td>
+            <td>{{item.note}}</td>
+          </tr>
+        </table>
+        <button id="export" class="btn btn-primary" type="button" ng-click="exportJson()" >Export Json</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal content-->
+<script type="text/ng-template" id="addSong.html">
+    <div class="modal-content large">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" ng-click="closeModal()">&times;</button>
+            <h3 class="modal-title">{{currentItem.allArtists}} - {{currentItem.name}}</h3>
+        </div>
+        <div class="row">
+          <div class="col-xs-2">
+            <label>Note:</label>
+          </div>
+          <div class="col-xs-10">
+            <input ng-model="track.note" type="text" class="form-control" placeholder="Enter Note">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-2">
+            <label>Image</label>
+          </div>
+          <div class="col-xs-10">
+            <input ng-model="track.image" type="text" class="form-control" placeholder={{currentItem.album.images[0].url}} >
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addToPlaylistHandler();">Add</button>
+        </div>
+    </div>
+</script>
+
+
+<script type="text/ng-template" id="exportModal.html">
+    <div class="modal-content large">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" ng-click="closeErrorModal();">&times;</button>
+            <h3 class="modal-title">Json Export</h3>
+        </div>
+        <div class="modal-body">
+            {{playlistJson}}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeModal();">Close</button>
+        </div>
+    </div>
+</script>
